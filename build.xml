@@ -509,6 +509,7 @@
             <compileBinding binding="jemalloc"/>
             <compileBinding binding="llvm"/>
             <compileBinding binding="lmdb"/>
+            <compileBinding binding="lwjglx"/>
             <compileBinding binding="lz4"/>
             <compileBinding binding="meshoptimizer"/>
             <compileBinding binding="msdfgen"/>
@@ -1828,6 +1829,9 @@
 
         <!-- LMDB -->
         <release-module name="lmdb" native-library="lwjgl_lmdb" title="LMDB" if:true="${binding.lmdb}"/>
+
+        <!-- LWJGLX -->
+        <release-module name="lwjglx" title="LWJGLX" if:true="${binding.lwjglx}"/>
 
         <!-- lz4 -->
         <release-module name="lz4" native-library="lwjgl_lz4" title="lz4" if:true="${binding.lz4}"/>
