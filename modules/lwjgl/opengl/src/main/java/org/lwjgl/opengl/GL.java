@@ -6,6 +6,7 @@ package org.lwjgl.opengl;
 
 import org.jspecify.annotations.*;
 import org.lwjgl.*;
+import org.lwjgl.glfw.*;
 import org.lwjgl.system.*;
 import org.lwjgl.system.windows.*;
 
@@ -86,6 +87,9 @@ public final class GL {
     static void initialize() {
         // intentionally empty to trigger static initializer
     }
+
+    private static native long getGraphicsBufferAddr();
+    private static native int[] getNativeWidthHeight();
 
     /** Loads the OpenGL native library, using the default library name. */
     public static void create() {
@@ -393,6 +397,14 @@ public final class GL {
         FunctionProvider functionProvider = GL.functionProvider;
         if (functionProvider == null) {
             throw new IllegalStateException("OpenGL library has not been loaded.");
+        }
+
+        if (System.getenv("POJAV_RENDERER").equals("opengles3_virgl") || System.getenv("POJAV_RENDERER").equals("vulkan_zink")) {
+            int[] dims = getNativeWidthHeight();
+            callJPI(GLFW.glfwGetCurrentContext(),getGraphicsBufferAddr(),GL_UNSIGNED_BYTE,dims[0],dims[1],functionProvider.getFunctionAddress("OSMesaMakeCurrent"));
+        } else if (System.getenv("POJAV_RENDERER").startsWith("opengles")) {
+            // This fixed framebuffer issue on 1.13+ 64-bit by another making current
+            GLFW.glfwMakeContextCurrent(GLFW.mainContext);
         }
 
         // We don't have a current ContextCapabilities when this method is called
