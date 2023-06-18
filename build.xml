@@ -509,7 +509,6 @@
             <compileBinding binding="jemalloc"/>
             <compileBinding binding="llvm"/>
             <compileBinding binding="lmdb"/>
-            <compileBinding binding="lwjglx"/>
             <compileBinding binding="lz4"/>
             <compileBinding binding="meshoptimizer"/>
             <compileBinding binding="msdfgen"/>
@@ -564,9 +563,11 @@
             <exclude name="org/lwjgl/glfw/GLFWVulkan.java" unless:true="${binding.vulkan}"/>
         </compileBinding>
 
-        <compileBinding binding="ktx">
+        <compileBinding binding="lwjglx">
             <classpath>
-                <pathelement path="${bin.lwjgl}/vulkan"/>
+                <pathelement path="${bin.lwjgl}/glfw"/>
+                <pathelement path="${bin.lwjgl}/openal"/>
+                <pathelement path="${bin.lwjgl}/opengl"/>
             </classpath>
         </compileBinding>
 
