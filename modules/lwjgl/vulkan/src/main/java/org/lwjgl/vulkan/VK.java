@@ -107,14 +107,12 @@ public final class VK {
      */
     private static boolean tryCreateFromEnv() {
        if(Platform.get() != Platform.LINUX) return false;
-       String vulkanHandleHex = System.getenv("VULKAN_PTR");
-       if(vulkanHandleHex == null || vulkanHandleHex.isEmpty()) return false;
        long vulkanHandle = 0;
        try {
-          vulkanHandle = Long.decode(vulkanHandleHex);
-       } catch (NumberFormatException e) {
-          e.printStackTrace();
-          return false;
+           vulkanHandle = getVulkanDriverHandle();
+       } catch(UnsatisfiedLinkError e) {
+           e.printStackTrace();
+           return false;
        }
        SharedLibrary VK = Library.createFromHandle("libvulkan.so", vulkanHandle);
        create(VK);
@@ -267,6 +265,7 @@ public final class VK {
 
         return enabledExtensions;
     }
+    public static native long getVulkanDriverHandle();
 
     private static void printUnsupportedVersion(int majorVersion, int minorVersion) {
         apiLog("[Vulkan] Detected unsupported Vulkan version: " + majorVersion + '.' + minorVersion);
