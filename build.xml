@@ -881,7 +881,7 @@
 	            <include name="org/lwjgl/demo/util/freetype/**" if:true="${binding.freetype}"/>
 	            <include name="org/lwjgl/demo/util/harfbuzz/**" if:true="${binding.harfbuzz}"/>
 	            <include name="org/lwjgl/demo/util/hwloc/**" if:true="${binding.hwloc}"/>
-	            <include name="org/lwjgl/demo/util/ktx/**" if:true="${binding.ktx}"/>
+
 	            <include name="org/lwjgl/demo/util/lmdb/**" if:true="${binding.lmdb}"/>
 	            <include name="org/lwjgl/demo/util/lz4/**" if:true="${binding.lz4}"/>
 	            <include name="org/lwjgl/demo/util/meshoptimizer/**" if:true="${binding.meshoptimizer}"/>
@@ -1824,6 +1824,9 @@
                 <get-release platform="windows" arch="arm64" file="ktx.dll"/>
             </natives>
         </release-module>
+
+        <!-- libdivide -->
+        <release-module name="libdivide" native-library="lwjgl_libdivide" title="libdivide" if:true="${binding.libdivide}"/>
 
         <!-- LLVM -->
         <release-module name="llvm" native-library="lwjgl_llvm" title="LLVM/Clang" if:true="${binding.llvm}"/>
