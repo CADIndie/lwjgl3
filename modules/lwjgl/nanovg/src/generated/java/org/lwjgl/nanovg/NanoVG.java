@@ -1171,7 +1171,7 @@ public class NanoVG {
         return nnvgCreateFontMem(ctx, memAddress(name), memAddress(data), data.remaining(), freeData ? 1 : 0);
     }
     public static int nvgCreateFontMem(@NativeType("NVGcontext *") long ctx, @NativeType("char const *") ByteBuffer name, @NativeType("unsigned char *") ByteBuffer data, int freeData) {
-        nvgCreateFontMem(ctx, name, data, freeData == 0 ? false : true);
+        return nvgCreateFontMem(ctx, name, data, freeData == 0 ? false : true);
     }
 
     /** {@code int nvgCreateFontMem(NVGcontext * ctx, char const * name, unsigned char * data, int ndata, int freeData)} */
@@ -1189,7 +1189,7 @@ public class NanoVG {
         }
     }
     public static int nvgCreateFontMem(@NativeType("NVGcontext *") long ctx, @NativeType("char const *") CharSequence name, @NativeType("unsigned char *") ByteBuffer data, int freeData) {
-        nvgCreateFontMem(ctx, name, data, freeData == 0 ? false : true);
+        return nvgCreateFontMem(ctx, name, data, freeData == 0 ? false : true);
     }
 
     // --- [ nvgCreateFontMemAtIndex ] ---
@@ -1206,7 +1206,7 @@ public class NanoVG {
         return nnvgCreateFontMemAtIndex(ctx, memAddress(name), memAddress(data), data.remaining(), freeData ? 1 : 0, fontIndex);
     }
     public static int nvgCreateFontMemAtIndex(@NativeType("NVGcontext *") long ctx, @NativeType("char const *") ByteBuffer name, @NativeType("unsigned char *") ByteBuffer data, int freeData, int fontIndex) {
-        nvgCreateFontMemAtIndex(ctx, name, data, freeData == 0 ? false : true, fontIndex);
+        return nvgCreateFontMemAtIndex(ctx, name, data, freeData == 0 ? false : true, fontIndex);
     }
 
     /** {@code int nvgCreateFontMemAtIndex(NVGcontext * ctx, char const * name, unsigned char * data, int ndata, int freeData, int fontIndex)} */
@@ -1224,7 +1224,7 @@ public class NanoVG {
         }
     }
     public static int nvgCreateFontMemAtIndex(@NativeType("NVGcontext *") long ctx, @NativeType("char const *") CharSequence name, @NativeType("unsigned char *") ByteBuffer data, int freeData, int fontIndex) {
-        nvgCreateFontMemAtIndex(ctx, name, data, freeData == 0 ? false : true, fontIndex);
+        return nvgCreateFontMemAtIndex(ctx, name, data, freeData == 0 ? false : true, fontIndex);
     }
 
     // --- [ nvgFindFont ] ---
