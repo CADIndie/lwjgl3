@@ -101,7 +101,7 @@ public final class AL {
             ALC10.alcMakeContextCurrent(contextHandle);
             //alContext = new ALContext(alDevice, contextHandle);
             alContext = ALC10.alcCreateContext(contextHandle, (IntBuffer)null);
-            alContextCaps = ALC.createCapabilities(alContext);
+            alContextCaps = ALC.createCapabilities(alDevice);
 
             alCaps = AL.createCapabilities(alContextCaps);
 
@@ -136,7 +136,7 @@ public final class AL {
             ALC10.alcMakeContextCurrent(contextHandle);
             //alContext = new ALContext(alDevice, contextHandle);
             alContext = ALC10.alcCreateContext(contextHandle, (IntBuffer)null);
-            alContextCaps = ALC.createCapabilities(alContext);
+            alContextCaps = ALC.createCapabilities(alDevice);
 
             alCaps = AL.createCapabilities(alContextCaps);
 
