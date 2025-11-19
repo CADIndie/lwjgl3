@@ -359,6 +359,13 @@ public class ALC10 {
         return invokePPP(deviceHandle, attrList, __functionAddress);
     }
 
+      public static boolean alcIsExtensionPresent(ALCdevice device, String extName) {
+        long deviceHandle = JNI.invokeP(ALC.getICD().alcGetCurrentContext);
+        ByteBuffer bExtName = MemoryStack.stackUTF8(extName);
+        Checks.checkNT1(bExtName);
+        return nalcIsExtensionPresent(deviceHandle, MemoryUtil.memAddress(bExtName));
+    }
+
     /** {@code ALCvoid alcGetIntegerv(ALCdevice * deviceHandle, ALCenum token, ALCsizei size, ALCint * dest)} */
     @NativeType("ALCvoid")
     public static void alcGetIntegerv(@NativeType("ALCdevice *") long deviceHandle, @NativeType("ALCenum") int token, @NativeType("ALCint *") int[] dest) {
