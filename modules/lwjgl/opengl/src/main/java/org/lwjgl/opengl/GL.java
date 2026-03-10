@@ -8,6 +8,7 @@ import org.jspecify.annotations.*;
 import org.lwjgl.*;
 import org.lwjgl.system.*;
 import org.lwjgl.system.windows.*;
+import org.lwjgl.system.macosx.*;
 
 import java.nio.*;
 import java.util.*;
@@ -100,21 +101,21 @@ public final class GL {
             GL = loadOSMesa();
         }
 
-        if (GL == null) {
-            GL = loadNative();
-            if (GL == null && !"native".equals(contextAPI)) {
-                if (!tryEGL) {
-                    GL = loadEGL();
-                }
-                if (GL == null && !"OSMesa".equals(contextAPI)) {
-                    GL = loadOSMesa();
-                }
-            }
-        }
-
-        if (GL == null) {
-            throw new IllegalStateException("There is no OpenGL context management API available.");
-        }
+        // if (GL == null) {
+        //     GL = loadNative();
+        //     if (GL == null && !"native".equals(contextAPI)) {
+        //         if (!tryEGL) {
+        //             GL = loadEGL();
+        //         }
+        //         if (GL == null && !"OSMesa".equals(contextAPI)) {
+        //             GL = loadOSMesa();
+        //         }
+        //     }
+        // }
+        //
+        // if (GL == null) {
+        //     throw new IllegalStateException("There is no OpenGL context management API available.");
+        // }
 
         create(GL);
     }
