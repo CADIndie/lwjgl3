@@ -256,6 +256,7 @@
             </beforeCompile>
             <link>
                 <arg value="-ldl"/>
+                <arg value="-lm"/>
             </link>
         </build>
 
