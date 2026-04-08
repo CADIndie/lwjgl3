@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-export LIBFFI_VERSION=3.4.6
+export LIBFFI_VERSION=3.5.2
 export ANDROID=1
 #export LWJGL_BUILD_ARCH=arm64
 
@@ -44,7 +44,7 @@ fi
 
 if [ "$SKIP_FREETYPE" != "1" ]; then
   #!/bin/bash
-  export BUILD_FREETYPE_VERSION=2.13.3
+  export BUILD_FREETYPE_VERSION=2.14.1
   wget https://downloads.sourceforge.net/project/freetype/freetype2/$BUILD_FREETYPE_VERSION/freetype-$BUILD_FREETYPE_VERSION.tar.gz
   tar xf freetype-$BUILD_FREETYPE_VERSION.tar.gz
   rm  freetype-$BUILD_FREETYPE_VERSION.tar.gz
@@ -75,6 +75,7 @@ if [ "$SKIP_FREETYPE" != "1" ]; then
 fi
 
 # Download libraries
+# TODO: UPDATE OPENAL, IT IS OUTDATED
 POJAV_NATIVES="https://github.com/AngelAuraMC/Amethyst-Android/raw/34fe895c4d6117b50dd19a69819cd5430de6fc06/app_pojavlauncher/src/main/jniLibs/$NDK_ABI"
 wget -nc $POJAV_NATIVES/libopenal.so -P $LWJGL_NATIVE/openal
 wget -nc "https://github.com/AngelAuraMC/shaderc/releases/latest/download/libshaderc-$NDK_ABI.zip"
@@ -116,21 +117,25 @@ yes | ant -Dplatform.linux=true \
   -Dbinding.opus=false \
   -Dbinding.par=false \
   -Dbinding.remotery=false \
+  -Dbinding.renderdoc=false \
   -Dbinding.rpmalloc=false \
   -Dbinding.sse=false \
+  -Dbinding.spng=false \
   -Dbinding.tinyexr=false \
+  -Dbinding.tinyfd=true \
   -Dbinding.tootle=false \
   -Dbinding.xxhash=false \
   -Dbinding.yoga=false \
   -Dbinding.zstd=false \
-  -Dbinding.shaderc=false \
-  -Dbinding.vulkan=false \
-  -Dbinding.vma=false \
-  -Dbinding.spvc=false \
-  -Dbuild.type=release/3.3.6 \
+  -Dbinding.shaderc=true \
+  -Dbinding.sdl=false \
+  -Dbinding.vulkan=true \
+  -Dbinding.vma=true \
+  -Dbinding.spvc=true \
+  -Dbuild.type=release/3.4.1 \
   -Djavadoc.skip=true \
   -Dnashorn.args="--no-deprecation-warning" \
-  -Djdk21=true \
+  -Djdk25=true \
   compile compile-native release
 # shaderc, vulkan, spvc, and vma can be reenabled if needed but for now, including them just leads to conflicts and crashes cause cinnabar overrides it.
 
