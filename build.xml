@@ -1572,7 +1572,7 @@
                 </copy>
             </quiet>
 
-            <sequential if:set="jdk25">
+            <sequential if:set="dontRunThisBecauseItsNotUsed">
                 <!-- Generate module-info override for JDK 25 -->
                 <java
                         classname="org.lwjgl.system.ffm.FFM"
