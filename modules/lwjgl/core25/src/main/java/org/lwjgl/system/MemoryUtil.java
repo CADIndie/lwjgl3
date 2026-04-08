@@ -1515,6 +1515,18 @@ public final class MemoryUtil {
 
     // --- [ memcpy ] ---
 
+    // from LWJGL 3.1.2
+    /**
+     * Sets all bytes in a specified block of memory to a copy of another block.
+     *
+     * @param src   the source memory address
+     * @param dst   the destination memory address
+     * @param bytes the number of bytes to copy
+     */
+    public static void memCopy(long src, long dst, int bytes) {
+        memCopy(src, dst, (long)bytes);
+    }
+
     /**
      * Sets all bytes in a specified block of memory to a copy of another block.
      *

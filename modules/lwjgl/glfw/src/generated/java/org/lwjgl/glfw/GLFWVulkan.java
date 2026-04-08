@@ -112,8 +112,7 @@ public class GLFWVulkan {
         MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
         try {
             stack.nASCII(procname, true);
-            long procnameEncoded = stack.getPointerAddress();
-            return VK10.vkGetInstanceProcAddr(memAddressSafe(instance), procnameEncoded);
+            return VK10.vkGetInstanceProcAddr(instance, procname);
         } finally {
             stack.setPointer(stackPointer);
         }
